@@ -316,33 +316,78 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // }
 // console.log(remplacer(data))
 
-// 11. Diviser le tableau en groupes de taille 4
+// // 11. Diviser le tableau en groupes de taille 4
+// // A 
+// function diviser1(data) {
+//   let groupes = [];
+  
+//   for (let i = 0; i < data.length; i += 4) {
+//     groupes[groupes.length] = data.slice(i, i + 4);
+//   }
+  
+//   return groupes;
+// }
+
+// console.log(diviser1(data))
+// // b 
+// function diviser2(data) {
+//   let groupes = [];
+//   let groupeActuel = [];
+  
+//   for (let i = 0; i < data.length; i++) {
+//     groupeActuel[groupeActuel.length] = data[i];
+    
+//     if (groupeActuel.length === 4 || i === data.length - 1) {
+//       groupes[groupes.length] = groupeActuel;
+//       groupeActuel = [];  
+//     }
+//   }
+  
+//   return groupes;
+// }
+// console.log(diviser2(data))
+
+// 12. Créer une fonction qui retourne :
+
 // A 
-function diviser1(data) {
-  let groupes = [];
-  
-  for (let i = 0; i < data.length; i += 4) {
-    groupes[groupes.length] = data.slice(i, i + 4);
-  }
-  
-  return groupes;
+function calcu(data) {
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const somme = data.reduce((a, b) => a + b, 0);
+  const count = data.length;
+  const moyenne = somme / count;
+
+  return { max, min, somme, moyenne, count };
 }
 
-console.log(diviser1(data))
+console.log(calcu(data));
+// B 
+function calcu2(arr) {
+  let max = data[0];
+  let min = data[0];
+  let somme = 0;
+  let count = 0;
 
-function diviser2(data) {
-  let groupes = [];
-  let groupeActuel = [];
-  
   for (let i = 0; i < data.length; i++) {
-    groupeActuel[groupeActuel.length] = data[i];
-    
-    if (groupeActuel.length === 4 || i === data.length - 1) {
-      groupes[groupes.length] = groupeActuel;
-      groupeActuel = [];  
+    const val = data[i];
+
+    somme += val;
+
+    count++;
+
+    if (val > max) {
+      max = val;
+    }
+
+    if (val < min) {
+      min = val;
     }
   }
-  
-  return groupes;
+
+  const moyenne = somme / count;
+
+  return { max, min, somme, moyenne, count };
 }
-console.log(diviser2(data))
+
+console.log(calcu2(data));
+
