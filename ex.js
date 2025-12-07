@@ -84,44 +84,77 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 //     console.log(cumulatif2(data));
 
 
-// 4. Créer un tableau avec les nombres uniques triés
-//  A
-function uniquesTries(data) {
-  const unique = Array.from(new Set(data));
-  return unique.sort((a, b) => a - b);
+// // 4. Créer un tableau avec les nombres uniques triés
+// //  A
+// function uniquesTries(data) {
+//   const unique = Array.from(new Set(data));
+//   return unique.sort((a, b) => a - b);
+// }
+// console.log(uniquesTries(data));
+
+// // B 
+
+// function uniquesTries2(data) {
+//   let unique = [];
+  
+//   for (let i = 0; i < data.length; i++) {
+//     let existe = false;
+    
+//     for (let j = 0; j < unique.length; j++) {
+//       if (data[i] === unique[j]) {
+//         existe = true;
+//         break; 
+//       }
+//     }
+    
+//     if (existe === false) {
+//       unique[unique.length] = data[i];
+//     }
+//   }
+  
+//   for (let i = 0; i < unique.length; i++) {
+//     for (let j = 0; j < unique.length - 1; j++) {
+//       if (unique[j] > unique[j + 1]) {
+//         let temp = unique[j];
+//         unique[j] = unique[j + 1];
+//         unique[j + 1] = temp;
+//       }
+//     }
+//   }
+  
+//   return unique;
+// }
+// console.log(uniquesTries2(data));
+
+
+// 5. Regrouper les nombres < 50 et ≥ 50
+// A
+function regrouper(data) {
+  return data.reduce((groupes, nombre) => {
+    if (nombre < 50) {
+      groupes.petits.push(nombre);
+    } else {
+      groupes.grands.push(nombre);
+    }
+    return groupes;
+  }, { petits: [], grands: [] });
 }
-console.log(uniquesTries(data));
+console.log(regrouper(data));
 
-// B 
 
-function uniquesTries2(data) {
-  let unique = [];
+// B
+function regrouper2(data) {
+  let petits = [];
+  let grands = [];
   
   for (let i = 0; i < data.length; i++) {
-    let existe = false;
-    
-    for (let j = 0; j < unique.length; j++) {
-      if (data[i] === unique[j]) {
-        existe = true;
-        break; 
-      }
-    }
-    
-    if (existe === false) {
-      unique[unique.length] = data[i];
+    if (data[i] < 50) {
+      petits[petits.length] = data[i];
+    } else {
+      grands[grands.length] = data[i];
     }
   }
   
-  for (let i = 0; i < unique.length; i++) {
-    for (let j = 0; j < unique.length - 1; j++) {
-      if (unique[j] > unique[j + 1]) {
-        let temp = unique[j];
-        unique[j] = unique[j + 1];
-        unique[j + 1] = temp;
-      }
-    }
-  }
-  
-  return unique;
+  return { petits: petits, grands: grands };
 }
-console.log(uniquesTries2(data));
+console.log(regrouper2(data));
