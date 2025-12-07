@@ -267,25 +267,53 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // }
 // console.log(mapping(data))
 
-// 9. Générer un tableau contenant les nombres multipliés par leur index
-// A
+// // 9. Générer un tableau contenant les nombres multipliés par leur index
+// // A
 
-function multiplier(data) {
-  return data.map((valeur, index) => valeur * index);
+// function multiplier(data) {
+//   return data.map((valeur, index) => valeur * index);
+// }
+// console.log(multiplier(data))
+// // B 
+
+// function multiplier(data) {
+//   let resultat = [];
+  
+//   for (let i = 0; i < data.length; i++) {
+//     resultat[i] = data[i] * i;
+//   }
+  
+//   return resultat;
+// }
+// console.log(multiplier(data))
+
+
+// 10. Remplacer les valeurs < 10 par 0
+// A 
+function remplacer(data) {
+    data.map(valeur => {
+      if (valeur < 10) {
+        return 0;
+      } else {
+        return valeur;
+      }
+    })
 }
-console.log(multiplier(data))
+console.log(remplacer(data))
 // B 
-
-function multiplier(data) {
+function remplacer(data) {
   let resultat = [];
   
   for (let i = 0; i < data.length; i++) {
-    resultat[i] = data[i] * i;
+    if (data[i] < 10) {
+      resultat[i] = 0;
+    } else {
+      resultat[i] = data[i];
+    }
   }
   
   return resultat;
 }
-console.log(multiplier(data))
-
+console.log(remplacer(data))
 
 
