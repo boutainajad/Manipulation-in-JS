@@ -127,34 +127,70 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // console.log(uniquesTries2(data));
 
 
-// 5. Regrouper les nombres < 50 et ≥ 50
-// A
-function regrouper(data) {
-  return data.reduce((groupes, nombre) => {
-    if (nombre < 50) {
-      groupes.petits.push(nombre);
-    } else {
-      groupes.grands.push(nombre);
-    }
-    return groupes;
-  }, { petits: [], grands: [] });
-}
-console.log(regrouper(data));
+// // 5. Regrouper les nombres < 50 et ≥ 50
+// // A
+// function regrouper(data) {
+//   return data.reduce((groupes, nombre) => {
+//     if (nombre < 50) {
+//       groupes.petits.push(nombre);
+//     } else {
+//       groupes.grands.push(nombre);
+//     }
+//     return groupes;
+//   }, { petits: [], grands: [] });
+// }
+// console.log(regrouper(data));
 
 
-// B
-function regrouper2(data) {
-  let petits = [];
-  let grands = [];
+// // B
+// function regrouper2(data) {
+//   let petits = [];
+//   let grands = [];
   
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i] < 50) {
+//       petits[petits.length] = data[i];
+//     } else {
+//       grands[grands.length] = data[i];
+//     }
+//   }
+  
+//   return { petits: petits, grands: grands };
+// }
+// console.log(regrouper2(data));
+
+// 6. Trouver les 3 plus grands nombres
+
+// A 
+function top3v1(data) {
+  const sorted = [...data].sort((a, b) => b - a);
+  
+  return sorted.slice(0, 3);
+}
+console.log(top3v1(data))
+
+// B 
+function top3v2(data) {
+  let copie = [];
   for (let i = 0; i < data.length; i++) {
-    if (data[i] < 50) {
-      petits[petits.length] = data[i];
-    } else {
-      grands[grands.length] = data[i];
+    copie[i] = data[i];
+  }
+  
+  for (let i = 0; i < copie.length; i++) {
+    for (let j = 0; j < copie.length - 1; j++) {
+      if (copie[j] < copie[j + 1]) {  
+        let temp = copie[j];
+        copie[j] = copie[j + 1];
+        copie[j + 1] = temp;
+      }
     }
   }
   
-  return { petits: petits, grands: grands };
+  let top3 = [];
+  for (let i = 0; i < 3; i++) {
+    top3[i] = copie[i];
+  }
+  
+  return top3;
 }
-console.log(regrouper2(data));
+console.log(top3v2(data))
