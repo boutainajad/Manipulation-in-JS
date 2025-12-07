@@ -233,37 +233,59 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // console.log(bottom3v2(data))
 
 
-// 8. Créer un mapping :
+// // 8. Créer un mapping :
 
+// // A
+// function mapping(data) {
+//   return data.reduce((resultat, nombre) => {
+//     if (nombre % 2 === 0) {
+//       resultat.even.push(nombre);
+//     } else {
+//       resultat.odd.push(nombre);
+//     }
+//     resultat.total++;
+//     return resultat;
+//   }, { even: [], odd: [], total: 0 });
+// }
+// console.log(mapping(data))
+// // B
+// function mappingAvecBoucle(data) {
+//   let even = [];
+//   let odd = [];
+//   let total = 0;
+  
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i] % 2 === 0) {
+//       even[even.length] = data[i];
+//     } else {
+//       odd[odd.length] = data[i];
+//     }
+//     total++;
+//   }
+  
+//   return { even: even, odd: odd, total: total };
+// }
+// console.log(mapping(data))
+
+// 9. Générer un tableau contenant les nombres multipliés par leur index
 // A
-function mapping(data) {
-  return data.reduce((resultat, nombre) => {
-    if (nombre % 2 === 0) {
-      resultat.even.push(nombre);
-    } else {
-      resultat.odd.push(nombre);
-    }
-    resultat.total++;
-    return resultat;
-  }, { even: [], odd: [], total: 0 });
+
+function multiplier(data) {
+  return data.map((valeur, index) => valeur * index);
 }
-console.log(mapping(data))
-// B
-function mappingAvecBoucle(data) {
-  let even = [];
-  let odd = [];
-  let total = 0;
+console.log(multiplier(data))
+// B 
+
+function multiplier(data) {
+  let resultat = [];
   
   for (let i = 0; i < data.length; i++) {
-    if (data[i] % 2 === 0) {
-      even[even.length] = data[i];
-    } else {
-      odd[odd.length] = data[i];
-    }
-    total++;
+    resultat[i] = data[i] * i;
   }
   
-  return { even: even, odd: odd, total: total };
+  return resultat;
 }
-console.log(mapping(data))
+console.log(multiplier(data))
+
+
 
