@@ -196,38 +196,74 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // console.log(top3v2(data))
 
 
-// 7. Trouver les 3 plus petits nombres
-// A 
-function bottom3v1(data) {
-  const sorted = [...data].sort((a, b) => a - b);
+// // 7. Trouver les 3 plus petits nombres
+// // A 
+// function bottom3v1(data) {
+//   const sorted = [...data].sort((a, b) => a - b);
   
-  return sorted.slice(0, 3);
-}
-console.log(bottom3v2(data))
+//   return sorted.slice(0, 3);
+// }
+// console.log(bottom3v2(data))
 
-// B 
-function bottom3v2(data) {
-  let copie = [];
-  for (let i = 0; i < data.length; i++) {
-    copie[i] = data[i];
-  }
+// // B 
+// function bottom3v2(data) {
+//   let copie = [];
+//   for (let i = 0; i < data.length; i++) {
+//     copie[i] = data[i];
+//   }
   
-  for (let i = 0; i < copie.length; i++) {
-    for (let j = 0; j < copie.length - 1; j++) {
-      if (copie[j] > copie[j + 1]) {  
+//   for (let i = 0; i < copie.length; i++) {
+//     for (let j = 0; j < copie.length - 1; j++) {
+//       if (copie[j] > copie[j + 1]) {  
 
-        let temp = copie[j];
-        copie[j] = copie[j + 1];
-        copie[j + 1] = temp;
-      }
+//         let temp = copie[j];
+//         copie[j] = copie[j + 1];
+//         copie[j + 1] = temp;
+//       }
+//     }
+//   }
+  
+//   let bottom3 = [];
+//   for (let i = 0; i < 3; i++) {
+//     bottom3[i] = copie[i];
+//   }
+  
+//   return bottom3;
+// }
+// console.log(bottom3v2(data))
+
+
+// 8. Créer un mapping :
+
+// A
+function mapping(data) {
+  return data.reduce((resultat, nombre) => {
+    if (nombre % 2 === 0) {
+      resultat.even.push(nombre);
+    } else {
+      resultat.odd.push(nombre);
     }
-  }
-  
-  let bottom3 = [];
-  for (let i = 0; i < 3; i++) {
-    bottom3[i] = copie[i];
-  }
-  
-  return bottom3;
+    resultat.total++;
+    return resultat;
+  }, { even: [], odd: [], total: 0 });
 }
-console.log(bottom3v2(data))
+console.log(mapping(data))
+// B
+function mappingAvecBoucle(data) {
+  let even = [];
+  let odd = [];
+  let total = 0;
+  
+  for (let i = 0; i < data.length; i++) {
+    if (data[i] % 2 === 0) {
+      even[even.length] = data[i];
+    } else {
+      odd[odd.length] = data[i];
+    }
+    total++;
+  }
+  
+  return { even: even, odd: odd, total: total };
+}
+console.log(mapping(data))
+
