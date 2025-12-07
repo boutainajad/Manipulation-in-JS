@@ -58,27 +58,70 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 //     }
 //     console.log(mediane2(data));
 
-// 3. Générer un tableau cumulatif :
+// // 3. Générer un tableau cumulatif :
+// //  A
+//     function cumulatif(data){
+//         let some = 0;
+//         return data.reduce((result, valeur) =>{
+//             some += valeur;
+//             result.push(some);
+//             return result;
+//         }, []);
+//     }
+//     console.log(cumulatif(data));
+
+// //  B
+//     function cumulatif2(data){
+//         let some = 0;
+//         let result = [];
+//         for (let i = 0; i < data.length; i++){
+//             some += data[i];
+//             result[result.length] = some;
+//         }
+//         return result;
+
+//     }
+//     console.log(cumulatif2(data));
+
+
+// 4. Créer un tableau avec les nombres uniques triés
 //  A
-    function cumulatif(data){
-        let some = 0;
-        return data.reduce((result, valeur) =>{
-            some += valeur;
-            result.push(some);
-            return result;
-        }, []);
-    }
-    console.log(cumulatif(data));
+function uniquesTries(data) {
+  const unique = Array.from(new Set(data));
+  return unique.sort((a, b) => a - b);
+}
+console.log(uniquesTries(data));
 
-//  B
-    function cumulatif2(data){
-        let some = 0;
-        let result = [];
-        for (let i = 0; i < data.length; i++){
-            some += data[i];
-            result[result.length] = some;
-        }
-        return result;
+// B 
 
+function uniquesTries2(data) {
+  let unique = [];
+  
+  for (let i = 0; i < data.length; i++) {
+    let existe = false;
+    
+    for (let j = 0; j < unique.length; j++) {
+      if (data[i] === unique[j]) {
+        existe = true;
+        break; 
+      }
     }
-    console.log(cumulatif2(data));
+    
+    if (existe === false) {
+      unique[unique.length] = data[i];
+    }
+  }
+  
+  for (let i = 0; i < unique.length; i++) {
+    for (let j = 0; j < unique.length - 1; j++) {
+      if (unique[j] > unique[j + 1]) {
+        let temp = unique[j];
+        unique[j] = unique[j + 1];
+        unique[j + 1] = temp;
+      }
+    }
+  }
+  
+  return unique;
+}
+console.log(uniquesTries2(data));
