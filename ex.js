@@ -288,32 +288,61 @@ const data = [12, 5, 8, 130, 44, 9, 2, 77, 21, 56, 3, 99, 14, 28, 1, 65, 7, 38, 
 // console.log(multiplier(data))
 
 
-// 10. Remplacer les valeurs < 10 par 0
+// // 10. Remplacer les valeurs < 10 par 0
+// // A 
+// function remplacer(data) {
+//     data.map(valeur => {
+//       if (valeur < 10) {
+//         return 0;
+//       } else {
+//         return valeur;
+//       }
+//     })
+// }
+// console.log(remplacer(data))
+// // B 
+// function remplacer(data) {
+//   let resultat = [];
+  
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i] < 10) {
+//       resultat[i] = 0;
+//     } else {
+//       resultat[i] = data[i];
+//     }
+//   }
+  
+//   return resultat;
+// }
+// console.log(remplacer(data))
+
+// 11. Diviser le tableau en groupes de taille 4
 // A 
-function remplacer(data) {
-    data.map(valeur => {
-      if (valeur < 10) {
-        return 0;
-      } else {
-        return valeur;
-      }
-    })
+function diviser1(data) {
+  let groupes = [];
+  
+  for (let i = 0; i < data.length; i += 4) {
+    groupes[groupes.length] = data.slice(i, i + 4);
+  }
+  
+  return groupes;
 }
-console.log(remplacer(data))
-// B 
-function remplacer(data) {
-  let resultat = [];
+
+console.log(diviser1(data))
+
+function diviser2(data) {
+  let groupes = [];
+  let groupeActuel = [];
   
   for (let i = 0; i < data.length; i++) {
-    if (data[i] < 10) {
-      resultat[i] = 0;
-    } else {
-      resultat[i] = data[i];
+    groupeActuel[groupeActuel.length] = data[i];
+    
+    if (groupeActuel.length === 4 || i === data.length - 1) {
+      groupes[groupes.length] = groupeActuel;
+      groupeActuel = [];  
     }
   }
   
-  return resultat;
+  return groupes;
 }
-console.log(remplacer(data))
-
-
+console.log(diviser2(data))
